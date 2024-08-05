@@ -1,6 +1,6 @@
 {
   "expo": {
-    "sdkVersion": "51.0.0",
+    
     "name": "mee_f",
     "slug": "mee_f",
     "version": "1.0.0",
@@ -28,5 +28,4 @@
       "favicon": "./assets/favicon.png"
     }
   }
-  
 }
