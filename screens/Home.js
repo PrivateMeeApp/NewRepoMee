@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Image, Modal } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'; // Ensure you have expo installed for vector icons
+import { useNavigation } from '@react-navigation/native';
 
-// Get screen dimensions for responsive design
 const { width } = Dimensions.get('window');
 
 // Import images from assets folder
@@ -13,16 +13,40 @@ import IconImage from '../assets/testwmee.png'; // Replace with your icon image
 import FAQImage1 from '../assets/eduf.png'; // Replace with your FAQ images
 import FAQImage2 from '../assets/lovef.png';
 import FAQImage3 from '../assets/carrerf.png';
-import FAQImage4 from '../assets/otherf.png';
+import FAQImage4 from '../assets/familyf1.jpg';
 import MeeImage from '../assets/mee1.png'; // Import the Mee image
 import FAQIcon from '../assets/faqicon.png'; // Import the FAQ icon image
+import CoinImage from '../assets/coin.gif'; // Import the coin image
 
 const Home = () => {
   const [activePage, setActivePage] = useState('home');
   const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+
+  const handleprofile = () => {
+    navigation.navigate('profile');
+  };
+  const handleother = () => {
+    navigation.navigate('family');
+  };
+  const handleIQ = () => {
+    navigation.navigate('IQ');
+  };
+  const handlepuzzle = () => {
+    navigation.navigate('puzzle');
+  };
 
   const handleModalToggle = () => {
     setModalVisible(!modalVisible);
+  };
+  const handlepay = () => {
+    navigation.navigate('pay');
+  };
+  const handlepq = () => {
+    navigation.navigate('pq');
+  };
+  const handlestudy = () => {
+    navigation.navigate('studyfaq');
   };
 
   return (
@@ -51,6 +75,11 @@ const Home = () => {
           <TouchableOpacity style={styles.messageIconContainer} onPress={handleModalToggle}>
             <Ionicons name="notifications" size={28} color="#000" />
           </TouchableOpacity>
+
+          <View style={styles.coinContainer}>
+            <Image source={CoinImage} style={styles.coinIcon} />
+            <Text style={styles.coinCount}>99</Text>
+          </View>
         </View>
         <View style={styles.line} />
         <View style={styles.faqsSectionContainer}>
@@ -59,7 +88,7 @@ const Home = () => {
             <Text style={styles.faqsSectionTitle}>FAQs  "Solve Your Issues Fast"</Text>
           </View>
           <ScrollView horizontal contentContainerStyle={styles.faqsScrollContainer}>
-            <TouchableOpacity style={styles.faqItem}>
+            <TouchableOpacity style={styles.faqItem} onPress={handlestudy}>
               <Text style={styles.faqItemTitle}>Study</Text>
               <Image source={FAQImage1} style={styles.faqItemImage} />
             </TouchableOpacity>
@@ -71,8 +100,8 @@ const Home = () => {
               <Text style={styles.faqItemTitle}>Carrer</Text>
               <Image source={FAQImage3} style={styles.faqItemImage} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.faqItem}>
-              <Text style={styles.faqItemTitle}>Other</Text>
+            <TouchableOpacity style={styles.faqItem} onPress={handleother}>
+              <Text style={styles.faqItemTitle}>Family</Text>
               <Image source={FAQImage4} style={styles.faqItemImage} />
             </TouchableOpacity>
           </ScrollView>
@@ -85,15 +114,15 @@ const Home = () => {
               <Text style={styles.categoriesTitle}>Test Yourself With Mee !!</Text>
             </View>
             <View style={styles.categoryList}>
-              <TouchableOpacity style={styles.categoryItem}>
-                <Image source={IQTestImage} style={styles.categoryImage} />
-                <Text style={styles.categoryText}>IQ Test</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.categoryItem}>
+            <TouchableOpacity style={styles.categoryItem} onPress={handleIQ}>
+  <Image source={IQTestImage} style={styles.categoryImage} />
+  <Text style={styles.categoryText}>IQ Test</Text>
+</TouchableOpacity>
+              <TouchableOpacity style={styles.categoryItem} onPress={handlepuzzle}>
                 <Image source={PuzzleImage} style={styles.categoryImage} />
                 <Text style={styles.categoryText}>Puzzles</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.categoryItem}>
+              <TouchableOpacity style={styles.categoryItem} onPress={handlepq}>
                 <Image source={PQImage} style={styles.categoryImage} />
                 <Text style={styles.categoryText}>PQ</Text>
               </TouchableOpacity>
@@ -106,7 +135,7 @@ const Home = () => {
         <Text style={styles.connectionText}>
           Connect with our skilled psychologist for tailored solutions to your challenges.
         </Text>
-        <TouchableOpacity style={styles.buttonInsideContainer}>
+        <TouchableOpacity style={styles.buttonInsideContainer} onPress={handlepay}>
           <MaterialIcons name="support-agent" size={24} color="#ff8c00" style={styles.icon} />
           <Text style={styles.buttonText}>Connect</Text>
         </TouchableOpacity>
@@ -122,14 +151,14 @@ const Home = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.navItem}
-          onPress={() => setActivePage('connect')}
+          onPress={handlepay}
         >
           <MaterialIcons name="support-agent" size={24} color={activePage === 'connect' ? '#FFA800' : '#fff'} />
           <Text style={[styles.navText, { color: activePage === 'connect' ? '#FFA800' : '#fff' }]}>Connect</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.navItem}
-          onPress={() => setActivePage('profile')}
+          onPress={handleprofile}
         >
           <Ionicons name="person" size={24} color={activePage === 'profile' ? '#FFA800' : '#fff'} />
           <Text style={[styles.navText, { color: activePage === 'profile' ? '#FFA800' : '#fff' }]}>Profile</Text>
@@ -153,6 +182,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    marginTop: 12,
   },
   meeImage: {
     width: 90,
@@ -162,6 +192,9 @@ const styles = StyleSheet.create({
     marginLeft: 119,
   },
   messageIconContainer: {
+    position: 'absolute',
+    left: 10, // Positioning on the left
+    top: 13,  // Adjust the top position as needed
     padding: 4,
     borderRadius: 20,
     backgroundColor: '#FFD048',
@@ -170,8 +203,33 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 50,
     elevation: 50,
-    marginTop: 19,
-    marginLeft: 0,
+  },
+  coinContainer: {
+    position: 'absolute',
+    right: 0, // Positioning on the right
+    top: 10,  // Adjust the top position as needed
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#000', // Added background color
+    borderColor: '#FFf', // Added border color
+    borderWidth: 2,
+    borderRadius: 50, // Optional: add some border radius for a smoother look
+    paddingHorizontal: 3,
+    paddingVertical: 0,
+    height:46,
+    width:90,
+  },
+  coinIcon: {
+    width: 40,
+    height: 50,
+    resizeMode: 'contain',
+    
+  },
+  coinCount: {
+    fontSize: 19,
+    fontWeight: 'bold',
+    color: '#ffffff',
+    marginRight:10,
   },
   line: {
     height: 2.5,
