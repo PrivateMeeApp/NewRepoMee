@@ -14,7 +14,7 @@ import connect from './screens/connect';
 import family from './screens/family';
 import pq from'./screens/pq';
 import studyfaq from './screens/studyfaq';
-import pqrel from './screens/pqrel';
+
 
 const Stack = createStackNavigator();
 
@@ -34,7 +34,7 @@ export default function App() {
         <Stack.Screen name='family' component={family} options={{headerShown: false}}/>
         <Stack.Screen name='pq' component={pq} options={{headerShown: false}}/>
         <Stack.Screen name='studyfaq' component={studyfaq} options={{headerShown: false}}/>
-        <Stack.Screen name='pqrel' component={pqrel} options={{headerShown: false}}/>
+  
         
       </Stack.Navigator>
       <StatusBar style="auto" />
