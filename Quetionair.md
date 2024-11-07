@@ -12,6 +12,11 @@
 
 # prem's ideas:
 hlo iam pc
+Have you ever experienced a terrible occurrence that has impacted you significantly? Examples may include being the victim of armed assault, witnessing a tragedy happen to someone else, surviving a sexual assault, or living through a natural disaster.
+Do you ever feel that you’ve been affected by feelings of edginess, anxiety, or nerves?
+Have you experienced a week or longer of lower-than-usual interest in activities that you usually enjoy? Examples might include work, exercise, or hobbies.
+Have you ever experienced an ‘attack’ of fear, anxiety, or panic?
+Do feelings of anxiety or discomfort around others bother you?
 
 # praveen's ideas:
 
