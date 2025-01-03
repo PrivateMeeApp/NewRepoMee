@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, Image, Modal } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'; // Ensure you have expo installed for vector icons
 import { useNavigation } from '@react-navigation/native';
-
+import Navbar from '../screens/navbar';
 const { width } = Dimensions.get('window');
 
 // Import images from assets folder
@@ -19,9 +19,18 @@ import FAQIcon from '../assets/faqicon.png'; // Import the FAQ icon image
 import CoinImage from '../assets/coin.gif'; // Import the coin image
 
 const Home = () => {
-  const [activePage, setActivePage] = useState('home');
+  // const [activePage, setActivePage] = useState('home');
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedTab, setSelectedTab] = useState('home');
   const navigation = useNavigation();
+  const handleNavigation = (screen) => {
+    setSelectedTab(screen);
+  };
+
+  // Hide navbar on touch events
+  const handleTouchableAreaPress = () => {
+    Keyboard.dismiss(); // Hide keyboard when tapping on non-input areas
+  };
 
   const handleprofile = () => {
     navigation.navigate('profile');
@@ -141,7 +150,7 @@ const Home = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.navbar}>
+      {/* <View style={styles.navbar}>
         <TouchableOpacity
           style={styles.navItem}
           onPress={() => setActivePage('home')}
@@ -163,7 +172,8 @@ const Home = () => {
           <Ionicons name="person" size={24} color={activePage === 'profile' ? '#FFA800' : '#fff'} />
           <Text style={[styles.navText, { color: activePage === 'profile' ? '#FFA800' : '#fff' }]}>Profile</Text>
         </TouchableOpacity>
-      </View>
+      </View>  */}
+      <Navbar selectedTab={selectedTab} onNavigate={handleNavigation} />
     </View>
   );
 };
