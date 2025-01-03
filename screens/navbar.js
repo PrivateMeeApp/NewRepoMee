@@ -26,7 +26,7 @@ const Navbar = ({ selectedTab }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.navItem}
-        onPress={() => navigation.navigate('Connect')}
+        onPress={() => navigation.navigate('connect')}
       >
         <View style={[styles.selectedBox, { opacity: selectedTab === 'connect' ? 1 : 0 }]} />
         <MaterialIcons name="support-agent" size={24} color={'#000'} />
@@ -42,7 +42,7 @@ const Navbar = ({ selectedTab }) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.navItem}
-        onPress={() => navigation.navigate('Profile')}
+        onPress={() => navigation.navigate('profile')}
       >
         <View style={[styles.selectedBox, { opacity: selectedTab === 'profile' ? 1 : 0 }]} />
         <Ionicons name="person" size={24} color={'#000'} />
